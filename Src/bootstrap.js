@@ -139,17 +139,15 @@ function addMenuItem(win) {
   removeMI();
 
   // add the new menuitem to File menu
-  let (restartMI = win.document.createElementNS(NS_XUL, "menuitem")) {
-    restartMI.setAttribute("id", fileMenuitemID);
-    restartMI.setAttribute("class", "menuitem-iconic");
-    restartMI.setAttribute("label", _("restart", getPref("locale")));
-    restartMI.setAttribute("accesskey", "R");
-    restartMI.setAttribute("key", keyID);
-    restartMI.style.listStyleImage = "url('" + logo + "')";
-    restartMI.addEventListener("command", restart, true);
-
-    $("menu_FilePopup").insertBefore(restartMI, $("menu_FileQuitItem"));
-  }
+  let restartMI = win.document.createElementNS(NS_XUL, "menuitem");
+  restartMI.setAttribute("id", fileMenuitemID);
+  restartMI.setAttribute("class", "menuitem-iconic");
+  restartMI.setAttribute("label", _("restart", getPref("locale")));
+  restartMI.setAttribute("accesskey", "R");
+  restartMI.setAttribute("key", keyID);
+  restartMI.style.listStyleImage = "url('" + logo + "')";
+  restartMI.addEventListener("command", restart, true);
+  $("menu_FilePopup").insertBefore(restartMI, $("menu_FileQuitItem"));
 
   unload(removeMI, win);
 }
@@ -181,14 +179,13 @@ function main(win) {
   rrKeyset.setAttribute("id", keysetID);
 
   // add hotkey
-  let (restartKey = xul("key")) {
-    restartKey.setAttribute("id", keyID);
-    restartKey.setAttribute("key", getPref("key"));
-    restartKey.setAttribute("modifiers", getPref("modifiers"));
-    restartKey.setAttribute("oncommand", "void(0);");
-    restartKey.addEventListener("command", restart, true);
-    $(XUL_APP.baseKeyset).parentNode.appendChild(rrKeyset).appendChild(restartKey);
-  }
+  let restartKey = xul("key");
+  restartKey.setAttribute("id", keyID);
+  restartKey.setAttribute("key", getPref("key"));
+  restartKey.setAttribute("modifiers", getPref("modifiers"));
+  restartKey.setAttribute("oncommand", "void(0);");
+  restartKey.addEventListener("command", restart, true);
+  $(XUL_APP.baseKeyset).parentNode.appendChild(rrKeyset).appendChild(restartKey);
 
   // add menu bar item to File menu
   addMenuItem(win);

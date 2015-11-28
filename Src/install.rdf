@@ -4,7 +4,7 @@
     <creator>Erik Vold</creator>
     <id>restartless.restart@erikvold.com</id>
     <name>Restartless Restart</name>
-    <version>9.1-signed</version>
+    <version>9.1.1</version>
     <bootstrap>true</bootstrap>
     <type>2</type>
     <homepageURL>http://github.com/erikvold/restartless-restart-ffext</homepageURL>
@@ -23,7 +23,7 @@
       <r:Description>
         <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
         <minVersion>4.0b4</minVersion>
-        <maxVersion>10.0a1</maxVersion>
+        <maxVersion>45.0a1</maxVersion>
       </r:Description>
     </targetApplication>
     <!-- SeaMonkey -->
