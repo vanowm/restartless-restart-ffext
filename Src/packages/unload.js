@@ -60,7 +60,7 @@ exports.unload = function unload(callback, container) {
 
   // Calling with no arguments runs all the unloader callbacks
   if (callback == null) {
-    unloaders.slice().forEach(function(unloader) unloader());
+    unloaders.slice().forEach(function(unloader) {return unloader()});
     unloaders.length = 0;
     return;
   }

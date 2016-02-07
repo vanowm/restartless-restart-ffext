@@ -114,5 +114,5 @@ exports.watchWindows = function watchWindows(callback, winType) {
   Services.ww.registerNotification(windowWatcher);
 
   // Make sure to stop watching for windows if we're unloading
-  unload(function() Services.ww.unregisterNotification(windowWatcher));
+  unload(function() {return Services.ww.unregisterNotification(windowWatcher)});
 }

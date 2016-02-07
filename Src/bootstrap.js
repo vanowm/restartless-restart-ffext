@@ -57,14 +57,14 @@ const PREFS = {
   "disable_fastload": false,
   toolbar: "",
   "toolbar.before": "",
-  get key() _("restart.ak", getPref("locale"))
+  get key() {return _("restart.ak", getPref("locale"))}
 };
 
 var prefChgHandlers = [];
 let PREF_OBSERVER = {
   observe: function(aSubject, aTopic, aData) {
     if ("nsPref:changed" != aTopic || !(aData in PREFS)) return;
-    prefChgHandlers.forEach(function(func) func && func(aData));
+    prefChgHandlers.forEach(function(func) {return func && func(aData)});
   }
 }
 
@@ -76,13 +76,13 @@ let logo = "";
 * @param src (String)
 * The url of a javascript file to include.
 */
-(function(global) global.include = function include(src) {
+(function(global){ return global.include = function include(src) {
   var o = {};
   Components.utils.import("resource://gre/modules/Services.jsm", o);
   var uri = o.Services.io.newURI(
       src, null, o.Services.io.newURI(__SCRIPT_URI_SPEC__, null, null));
   o.Services.scriptloader.loadSubScript(uri.spec, global);
-})(this);
+}})(this);
 
 /* Imports a commonjs style javascript file with loadSubScrpt
  * 
@@ -130,7 +130,7 @@ function setPref(aKey, aVal) {
 }
 
 function addMenuItem(win) {
-  var $ = function(id) win.document.getElementById(id);
+  var $ = function(id) {return win.document.getElementById(id)};
 
   function removeMI() {
     var menuitem = $(fileMenuitemID);
@@ -172,8 +172,8 @@ function restart() {
 
 function main(win) {
   let doc = win.document;
-  function $(id) doc.getElementById(id);
-  function xul(type) doc.createElementNS(NS_XUL, type);
+  function $(id) {return id == "" ? undefined : doc.getElementById(id)};
+  function xul(type) {return doc.createElementNS(NS_XUL, type)};
 
   let rrKeyset = xul("keyset");
   rrKeyset.setAttribute("id", keysetID);
@@ -263,9 +263,10 @@ function main(win) {
 }
 
 var addon = {
-  getResourceURI: function(filePath) ({
+  getResourceURI: function(filePath){return {
     spec: __SCRIPT_URI_SPEC__ + "/../" + filePath
-  })
+  }
+  }
 }
 
 function disable(id) {
@@ -298,6 +299,6 @@ function startup(data, reason) {
   watchWindows(main, XUL_APP.winType);
   prefs = prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
   prefs.addObserver("", PREF_OBSERVER, false);
-  unload(function() prefs.removeObserver("", PREF_OBSERVER));
+  unload(function() {return prefs.removeObserver("", PREF_OBSERVER)});
 };
-function shutdown(data, reason) unload()
+function shutdown(data, reason)  {return unload()}
